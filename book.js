@@ -22,3 +22,8 @@ function addBookToLibrary(title, author, noOfPages, isRead) {
   book = new Book(id, title, author, noOfPages, isRead);
   myLibrary.push(book);
 }
+
+addBookToLibrary("Eloquent Ruby", "Russ Olsen", 338, true);
+addBookToLibrary("Practical OOD in Ruby", "Sandi Metz", 336, true);
+addBookToLibrary("99 Bottles of OOP", "Kathrina Owen", 336, false);
+addBookToLibrary("High Performance PostgreSQL for Rails", "Andrew Atkinson", 454, false);
