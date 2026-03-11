@@ -1,5 +1,73 @@
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+} */
+
+.container {
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  background-color: skyblue;
+  height: inherit;
+}
+
+.container > div {
+  /* border: 3px solid black; */
+}
+
+.header {
+  font-size: 40px;
+  font-weight: 800;
+  align-self: center;
+  padding: 20px;
+}
+
+.main-content {
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  gap: 10px;
+  padding: 20px;
+  background-color: magenta;
+}
+
+.main-content > * {
+  /* border: 3px solid greenyellow; */
+}
+
+/* Button Style */
+.button {
+  font-size: 20px;
+  font-weight: 800;
+  color: whitesmoke;
+  background-color: blue;
+  padding: 20px;
+  justify-self: center;
+  align-self: center;
+  border-style: none;
+  border-radius: 10px;
+}
+
+.button:hover {
+  border: 2px solid blue;
+  color: blue;
+  background-color: whitesmoke;
+}
+
+/* Card styles */
+.content {
+  display: grid;
+  grid-template-rows: repeat(2, 300px);
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-auto-rows: 300px;
+  gap: 20px;
+}
+
+.content div {
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.content > * {
+  background-color: blue;
 }
