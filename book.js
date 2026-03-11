@@ -16,3 +16,9 @@ function Book(id, title, author, noOfPages, isRead) {
     return `${this.title} by ${this.author}, ${this.noOfPages} pages, ${string}`;
   }
 }
+
+function addBookToLibrary(title, author, noOfPages, isRead) {
+  id = crypto.randomUUID();
+  book = new Book(id, title, author, noOfPages, isRead);
+  myLibrary.push(book);
+}
