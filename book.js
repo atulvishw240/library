@@ -1,13 +1,14 @@
 const myLibrary = [];
 
-function Book(title, author, noOfPages, read) {
+function Book(id, title, author, noOfPages, isRead) {
+  this.id = id;
   this.title = title;
   this.author = author;
   this.noOfPages = noOfPages;
-  this.read = read;
+  this.isRread = isRead;
 
   this.info = function() {
-    string = read ? "read" : "not read yet";
+    string = isRead ? "read" : "not read yet";
     return `${this.title} by ${this.author}, ${this.noOfPages} pages, ${string}`;
   }
 }
