@@ -1,19 +1,15 @@
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+* {
+  /* margin: 0; */
+  /* padding: 0; */
+  /* box-sizing: border-box; */
   font-family: Arial, Helvetica, sans-serif;
-} */
+}
 
 .container {
   display: grid;
   grid-template-rows: 80px 1fr;
   background-color: skyblue;
   height: inherit;
-}
-
-.container > div {
-  /* border: 3px solid black; */
 }
 
 .header {
@@ -31,13 +27,9 @@
   background-color: magenta;
 }
 
-.main-content > * {
-  /* border: 3px solid greenyellow; */
-}
-
 /* Button Style */
 .button {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 800;
   color: whitesmoke;
   background-color: blue;
@@ -63,11 +55,33 @@
   gap: 20px;
 }
 
-.content div {
+/* Style Card */
+.card {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: skyblue;
   border-radius: 16px;
 }
 
-.content > * {
-  background-color: blue;
+.card-item {
+  font-size: 22px;
+  font-weight: 700;
+  width: 100%;
+}
+
+.card-item > button {
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+.read {
+  background-color: greenyellow;
+}
+
+.remove {
+  background-color: orangered;
 }
