@@ -5,36 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Library</title>
   <link rel="stylesheet" href="style.css">
-  <script src="book.js"></script>
+  <script src="book.js" defer></script>
 </head>
 <body>
-  <div class="container">
+  <form action="" class="flex-column">
+    <div class="form-heading">Add new book</div>
+    <input type="text" name="title" placeholder="Title">
+    <input type="text" name="author" placeholder="Author">
+    <input type="number" name="pages" placeholder="Pages">
+    <div class="check flex">
+      <label for="read">Have you read it?</label>
+      <input type="checkbox" name="read-or-not" id="read">
+    </div>
+    <button class="submit">Submit</button>
+  </form>
+
+  <div class="container grid">
     <div class="header">Library</div>
 
-    <div class="main-content">
+    <div class="main-content grid">
       <button class="button">New Book</button>
-      <div class="content">
-        <div class="card">
-          <div class="card-item">POODR</div>
-          <div class="card-item">Sandi Metz</div>
-          <div class="card-item">399 pages</div>
-          <div class="card-item"><button class="read">Read</button></div>
-          <div class="card-item"><button class="remove">Remove</button></div>
-        </div>
-        <div class="card">Three</div>
-        <div class="card">Four</div>
-        <div class="card">Five</div>
-        <div class="card">Six</div>
-        <div class="card">Seven</div>
-        <div class="card">Eight</div>
-        <div class="card">Nine</div>
-        <div class="card">Ten</div>
-        <div class="card">Eleven</div>
-        <div class="card">Twelve</div>
-        <div class="card">Thirteen</div>
-        <div class="card">Fourteen</div>
-        <div class="card">Fifteen</div>
-      </div>
+      <div class="content grid"></div>
     </div>
   </div>
 </body>

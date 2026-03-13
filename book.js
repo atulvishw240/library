@@ -1,4 +1,4 @@
-const myLibrary = [];
+const library = [];
 
 function Book(id, title, author, noOfPages, isRead) {
   if (!new.target) {
@@ -10,20 +10,53 @@ function Book(id, title, author, noOfPages, isRead) {
   this.author = author;
   this.noOfPages = noOfPages;
   this.isRread = isRead;
-
-  this.info = function() {
-    string = isRead ? "read" : "not read yet";
-    return `${this.title} by ${this.author}, ${this.noOfPages} pages, ${string}`;
-  }
 }
 
 function addBookToLibrary(title, author, noOfPages, isRead) {
   id = crypto.randomUUID();
   book = new Book(id, title, author, noOfPages, isRead);
-  myLibrary.push(book);
+  library.push(book);
 }
 
 addBookToLibrary("Eloquent Ruby", "Russ Olsen", 338, true);
 addBookToLibrary("Practical OOD in Ruby", "Sandi Metz", 336, true);
 addBookToLibrary("99 Bottles of OOP", "Kathrina Owen", 336, false);
-addBookToLibrary("High Performance PostgreSQL for Rails", "Andrew Atkinson", 454, false);
+addBookToLibrary("High Performance SQL", "Andrew Atkinson", 454, false);
+
+library.forEach(myFunction);
+
+function myFunction(item) {
+  const content = document.querySelector(".content");
+
+  const card = document.createElement("div");
+  card.classList.add("card");
+  card.classList.add("flex-column");
+
+  const cardItem1 = document.createElement("div");
+  cardItem1.classList.add("card-item");
+  cardItem1.textContent = item.title;
+  card.appendChild(cardItem1);
+
+  const cardItem2 = document.createElement("div");
+  cardItem2.classList.add("card-item");
+  cardItem2.textContent = item.author;
+  card.appendChild(cardItem2);
+
+  const cardItem3 = document.createElement("div");
+  cardItem3.classList.add("card-item");
+  cardItem3.textContent = item.noOfPages + " pages";
+  card.appendChild(cardItem3);
+
+  const read = document.createElement("button");
+  read.classList.add("read");
+  read.textContent = "Read";
+  card.appendChild(read);
+
+  const remove = document.createElement("button");
+  remove.classList.add("remove");
+  remove.textContent = "Remove";
+  card.appendChild(remove);
+
+  content.appendChild(card);
+}
+
