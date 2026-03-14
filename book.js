@@ -9,7 +9,7 @@ function Book(id, title, author, noOfPages, isRead) {
   this.title = title;
   this.author = author;
   this.noOfPages = noOfPages;
-  this.isRread = isRead;
+  this.isRead = isRead;
 }
 
 function addBookToLibrary(title, author, noOfPages, isRead) {
@@ -23,42 +23,103 @@ addBookToLibrary("Practical OOD in Ruby", "Sandi Metz", 336, true);
 addBookToLibrary("99 Bottles of OOP", "Kathrina Owen", 336, false);
 addBookToLibrary("High Performance SQL", "Andrew Atkinson", 454, false);
 
-library.forEach(myFunction);
+library.forEach(display);
 
-function myFunction(item) {
+function display(book) {
   const content = document.querySelector(".content");
+  const card = createCard();
 
+  appendBookTitle(card, book);
+  appendBookAuthor(card, book);
+  appendBookPages(card, book);
+  appendReadButton(card, book);
+  appendRemoveButton(card, book);
+
+  content.appendChild(card);
+}
+
+function createCard() {
   const card = document.createElement("div");
   card.classList.add("card");
   card.classList.add("flex-column");
 
-  const cardItem1 = document.createElement("div");
-  cardItem1.classList.add("card-item");
-  cardItem1.textContent = item.title;
-  card.appendChild(cardItem1);
-
-  const cardItem2 = document.createElement("div");
-  cardItem2.classList.add("card-item");
-  cardItem2.textContent = item.author;
-  card.appendChild(cardItem2);
-
-  const cardItem3 = document.createElement("div");
-  cardItem3.classList.add("card-item");
-  cardItem3.textContent = item.noOfPages + " pages";
-  card.appendChild(cardItem3);
-
-  const read = document.createElement("button");
-  read.classList.add("read");
-  read.textContent = "Read";
-  card.appendChild(read);
-
-  const remove = document.createElement("button");
-  remove.classList.add("remove");
-  remove.textContent = "Remove";
-  card.appendChild(remove);
-
-  content.appendChild(card);
+  return card;
 }
+
+function appendBookTitle(card, book) {
+  const bookTitle = document.createElement("div");
+  bookTitle.classList.add("card-item");
+  bookTitle.textContent = book.title;
+  card.appendChild(bookTitle);
+}
+
+function appendBookAuthor(card, book) {
+  const bookAuthor = document.createElement("div");
+  bookAuthor.classList.add("card-item");
+  bookAuthor.textContent = book.author;
+  card.appendChild(bookAuthor);
+}
+
+function appendBookPages(card, book) {
+  const noOfPagesInBook = document.createElement("div");
+  noOfPagesInBook.classList.add("card-item");
+  noOfPagesInBook.textContent = book.noOfPages + " pages";
+  card.appendChild(noOfPagesInBook);
+}
+
+function appendReadButton(card, book) {
+  const readBtn = document.createElement("button");
+  readBtn.classList.add("read");
+
+  if (book.isRead) {
+    readBtn.textContent = "Read";
+  } else {
+    readBtn.classList.add("not-read");
+    readBtn.textContent = "Not Read";
+  }
+
+  card.appendChild(readBtn);
+}
+
+function appendRemoveButton(card, book) {
+  const removeBtn = document.createElement("button");
+  removeBtn.classList.add("remove");
+  removeBtn.textContent = "Remove";
+  card.appendChild(removeBtn);
+
+}
+
+function submitForm(event) {
+  const titleInput = document.getElementById("title");
+  const authorInput = document.getElementById("author");
+  const pagesInput = document.getElementById("pages");
+  const readCheckbox = document.getElementById("read-or-not");
+
+  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked);
+
+  titleInput.value = "";
+  authorInput.value = "";
+  pagesInput.value = "";
+  readCheckbox.checked = false;
+
+  modal.classList.add("hidden");
+  backdrop.classList.add("hidden");
+
+  event.preventDefault();
+}
+
+function buttonText(readButton) {
+  const btnText = readButton.textContent;
+
+    if (btnText === "Read") {
+      readButton.textContent = "Not Read";
+    } else {
+      readButton.textContent = "Read";
+    }
+}
+
+
+// ----------------------Event Listeners----------------------------
 
 const newBookBtn = document.querySelector(".new-book");
 const modal = document.querySelector(".modal");
@@ -74,43 +135,15 @@ backdrop.addEventListener("click", () => {
   backdrop.classList.add("hidden");
 });
 
+
 const submit = document.querySelector(".submit");
-submit.addEventListener("click", buttonClick);
+submit.addEventListener("click", submitForm);
 
-function buttonClick(event) {
-  const titleInput = document.getElementById('title');
-  const authorInput = document.getElementById('author');
-  const pagesInput = document.getElementById('pages');
-  const readCheckbox = document.getElementById('read-or-not');
-
-  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked);
-
-  // console.log(titleInput.value);
-  // console.log(authorInput.value);
-  // console.log(pagesInput.value);
-  // console.log(readCheckbox.checked);
-
-  titleInput.value = "";
-  authorInput.value = "";
-  pagesInput.value = "";
-  readCheckbox.checked = false;
-
-  modal.classList.add("hidden");
-  backdrop.classList.add("hidden");
-
-  event.preventDefault();
-}
 
 const readBtns = document.querySelectorAll('.read');
-console.log(readBtns);
-readBtns.forEach((button) => {
-  button.addEventListener("click", () => {
-    button.classList.toggle("not-read");
-    const btnText = button.textContent;
-    if (btnText === "Read") {
-      button.textContent = "Not Read";
-    } else {
-      button.textContent = "Read";
-    }
+readBtns.forEach((readButton) => {
+  readButton.addEventListener("click", () => {
+    readButton.classList.toggle("not-read");
+    buttonText(readButton);
   })
 });

@@ -174,6 +174,10 @@ input[type=checkbox] {
   height: 40px;
 }
 
+.not-read {
+  background-color: var(--lightest);
+}
+
 .new-book:hover {
   color: var(--light);
   background-color: var(--darker);
@@ -186,10 +190,6 @@ input[type=checkbox] {
 
 .remove:hover {
   background-color: #CD5C5C;
-}
-
-.not-read {
-  background-color: var(--lightest);
 }
 
 .not-read:hover {
