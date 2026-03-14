@@ -87,25 +87,38 @@
   color: #03045e;
 }
 
-
-/* Form Styles */
-form {
+/* Backdrop + modal */
+.backdrop {
   position: fixed;
+  inset: 0;
+  backdrop-filter: brightness(50%);
   z-index: 1;
-  gap: var(--gap-md);
-  padding: var(--pd-md);
-  background-color: var(--lightest);
-  border-radius: var(--br-r-md);
+}
 
-  /* Center form in viewport */
+.modal {
+  position: fixed;
+  z-index: 2;
+
+  /* Center form */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
+.hidden {
+  display: none;
+}
+
+/* Form Styles */
+form {
+  gap: var(--gap-md);
+  padding: var(--pd-md);
+  background-color: var(--lightest);
+  border-radius: var(--br-r-md);
+}
+
 .form-heading {
   font-size: var(--font-md);
-  color: #03045e;
 }
 
 input, label {
@@ -132,7 +145,7 @@ input[type=checkbox] {
 
 
 /* Button Styles */
-.button,
+.new-book,
 .read,
 .remove,
 .submit {
@@ -140,7 +153,7 @@ input[type=checkbox] {
   border-radius: var(--br-r-la);
 }
 
-.button {
+.new-book {
   background-color: var(--light);
   width: 125px;
   justify-self: center;
@@ -161,7 +174,7 @@ input[type=checkbox] {
   height: 40px;
 }
 
-.button:hover {
+.new-book:hover {
   color: var(--light);
   background-color: var(--darker);
 }
@@ -174,4 +187,3 @@ input[type=checkbox] {
 .remove:hover {
   background-color: #CD5C5C;
 }
-

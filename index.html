@@ -8,25 +8,29 @@
   <script src="book.js" defer></script>
 </head>
 <body>
-  <form action="" class="flex-column">
-    <div class="form-heading">Add new book</div>
-    <input type="text" name="title" placeholder="Title">
-    <input type="text" name="author" placeholder="Author">
-    <input type="number" name="pages" placeholder="Pages">
-    <div class="check flex">
-      <label for="read">Have you read it?</label>
-      <input type="checkbox" name="read-or-not" id="read">
-    </div>
-    <button class="submit">Submit</button>
-  </form>
-
   <div class="container grid">
     <div class="header">Library</div>
 
     <div class="main-content grid">
-      <button class="button">New Book</button>
+      <button class="new-book">New Book</button>
       <div class="content grid"></div>
     </div>
+  </div>
+
+  <div class="backdrop hidden"></div>
+
+  <div class="modal hidden">
+    <form action="" class="flex-column">
+      <div class="form-heading">Add new book</div>
+      <input type="text" name="title" placeholder="Title">
+      <input type="text" name="author" placeholder="Author">
+      <input type="number" name="pages" placeholder="Pages">
+      <div class="check flex">
+        <label for="read">Have you read it?</label>
+        <input type="checkbox" name="read-or-not" id="read">
+      </div>
+      <button class="submit">Submit</button>
+    </form>
   </div>
 </body>
 </html>

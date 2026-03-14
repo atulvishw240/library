@@ -60,3 +60,16 @@ function myFunction(item) {
   content.appendChild(card);
 }
 
+const newBookBtn = document.querySelector(".new-book");
+const modal = document.querySelector(".modal");
+const backdrop = document.querySelector(".backdrop");
+
+newBookBtn.addEventListener("click", () => {
+  modal.classList.remove("hidden");
+  backdrop.classList.remove("hidden");
+});
+
+backdrop.addEventListener("click", () => {
+  modal.classList.add("hidden");
+  backdrop.classList.add("hidden");
+});
