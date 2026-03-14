@@ -73,3 +73,44 @@ backdrop.addEventListener("click", () => {
   modal.classList.add("hidden");
   backdrop.classList.add("hidden");
 });
+
+const submit = document.querySelector(".submit");
+submit.addEventListener("click", buttonClick);
+
+function buttonClick(event) {
+  const titleInput = document.getElementById('title');
+  const authorInput = document.getElementById('author');
+  const pagesInput = document.getElementById('pages');
+  const readCheckbox = document.getElementById('read-or-not');
+
+  addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked);
+
+  // console.log(titleInput.value);
+  // console.log(authorInput.value);
+  // console.log(pagesInput.value);
+  // console.log(readCheckbox.checked);
+
+  titleInput.value = "";
+  authorInput.value = "";
+  pagesInput.value = "";
+  readCheckbox.checked = false;
+
+  modal.classList.add("hidden");
+  backdrop.classList.add("hidden");
+
+  event.preventDefault();
+}
+
+const readBtns = document.querySelectorAll('.read');
+console.log(readBtns);
+readBtns.forEach((button) => {
+  button.addEventListener("click", () => {
+    button.classList.toggle("not-read");
+    const btnText = button.textContent;
+    if (btnText === "Read") {
+      button.textContent = "Not Read";
+    } else {
+      button.textContent = "Read";
+    }
+  })
+});

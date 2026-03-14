@@ -187,3 +187,12 @@ input[type=checkbox] {
 .remove:hover {
   background-color: #CD5C5C;
 }
+
+.not-read {
+  background-color: var(--lightest);
+}
+
+.not-read:hover {
+  color: var(--lightest);
+  background-color: var(--dark);
+}
