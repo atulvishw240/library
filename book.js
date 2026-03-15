@@ -1,4 +1,5 @@
 const library = [];
+let counter = 0;
 
 function Book(id, title, author, noOfPages, isRead) {
   if (!new.target) {
@@ -23,7 +24,13 @@ addBookToLibrary("Practical OOD in Ruby", "Sandi Metz", 336, true);
 addBookToLibrary("99 Bottles of OOP", "Kathrina Owen", 336, false);
 addBookToLibrary("High Performance SQL", "Andrew Atkinson", 454, false);
 
-library.forEach(display);
+displayBooks();
+
+function displayBooks() {
+  for (counter; counter < library.length; counter++) {
+    display(library[counter]);
+  }
+}
 
 function display(book) {
   const content = document.querySelector(".content");
@@ -91,11 +98,14 @@ function appendRemoveButton(card, book) {
 
 
 const newBookBtn = document.querySelector(".new-book");
-const modal = document.querySelector(".modal");
 const backdrop = document.querySelector(".backdrop");
+const modal = document.querySelector(".modal");
 
 newBookBtn.addEventListener("click", displayForm);
-backdrop.addEventListener("click", hideForm);
+backdrop.addEventListener("click", () => {
+  clearFormFields();
+  hideForm();
+});
 
 function displayForm() {
   modal.classList.remove("hidden");
@@ -111,24 +121,27 @@ function hideForm() {
 const submit = document.querySelector(".submit");
 submit.addEventListener("click", submitForm);
 
+const titleInput = document.getElementById("title");
+const authorInput = document.getElementById("author");
+const pagesInput = document.getElementById("pages");
+const readCheckbox = document.getElementById("read-or-not");
+
 function submitForm(event) {
-  const titleInput = document.getElementById("title");
-  const authorInput = document.getElementById("author");
-  const pagesInput = document.getElementById("pages");
-  const readCheckbox = document.getElementById("read-or-not");
-
   addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked);
-  console.log(library);
-
-  titleInput.value = "";
-  authorInput.value = "";
-  pagesInput.value = "";
-  readCheckbox.checked = false;
+  displayBooks();
+  clearFormFields();
 
   modal.classList.add("hidden");
   backdrop.classList.add("hidden");
 
   event.preventDefault();
+}
+
+function clearFormFields() {
+  titleInput.value = "";
+  authorInput.value = "";
+  pagesInput.value = "";
+  readCheckbox.checked = false;
 }
 
 
