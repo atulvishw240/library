@@ -92,6 +92,7 @@ function appendReadButton(card, book) {
 
 function appendRemoveButton(card, book) {
   const removeBtn = document.createElement("button");
+  removeBtn.setAttribute("data-id", book.id);
   removeBtn.classList.add("remove");
   removeBtn.textContent = "Remove";
   card.appendChild(removeBtn);
@@ -179,4 +180,24 @@ removeBtns.forEach((removeBtn) => {
 function deleteBook(removeBtn) {
   const parent = removeBtn.parentNode;
   content.removeChild(parent);
+
+  const Bookid = removeBtn.dataset.id;
+  deleteBookFromLibrary(Bookid);
+}
+
+function deleteBookFromLibrary(id) {
+  book = getBook(id);
+  const index = library.indexOf(book);
+  library.splice(index, 1);
+
+  counter--;
+}
+
+function getBook(BookId) {
+  for (let i = 0; i < library.length; i++) {
+    book = library[i];
+    if (BookId === book.id) {
+      return book;
+    }
+  }
 }
