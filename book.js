@@ -145,7 +145,7 @@ function clearFormFields() {
 }
 
 
-const readBtns = document.querySelectorAll('.read');
+const readBtns = document.querySelectorAll(".read");
 readBtns.forEach((readButton) => {
   readButton.addEventListener("click", () => {
     readButton.classList.toggle("not-read");
@@ -161,4 +161,18 @@ function setButtonText(readButton) {
     } else {
       readButton.textContent = "Read";
     }
+}
+
+const removeBtns = document.querySelectorAll(".remove");
+removeBtns.forEach((removeBtn) => {
+  removeBtn.addEventListener("click", () => {
+    deleteBook(removeBtn);
+  });
+});
+
+function deleteBook(removeBtn) {
+  const parent = removeBtn.parentNode;
+  const contentContainer = document.querySelector(".content");
+
+  contentContainer.removeChild(parent);
 }
