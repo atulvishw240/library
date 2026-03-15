@@ -1,5 +1,7 @@
 const library = [];
+
 let counter = 0;
+const content = document.querySelector(".content");
 
 function Book(id, title, author, noOfPages, isRead) {
   if (!new.target) {
@@ -28,13 +30,12 @@ displayBooks();
 
 function displayBooks() {
   for (counter; counter < library.length; counter++) {
-    display(library[counter]);
+    createBookCard(library[counter]);
   }
 }
 
-function display(book) {
-  const content = document.querySelector(".content");
-  const card = createCard();
+function createBookCard(book) {
+  const card = createCardContainer();
 
   appendBookTitle(card, book);
   appendBookAuthor(card, book);
@@ -45,7 +46,7 @@ function display(book) {
   content.appendChild(card);
 }
 
-function createCard() {
+function createCardContainer() {
   const card = document.createElement("div");
   card.classList.add("card");
   card.classList.add("flex-column");
@@ -86,6 +87,7 @@ function appendReadButton(card, book) {
   }
 
   card.appendChild(readBtn);
+  toggleReadStatus(readBtn);
 }
 
 function appendRemoveButton(card, book) {
@@ -93,7 +95,7 @@ function appendRemoveButton(card, book) {
   removeBtn.classList.add("remove");
   removeBtn.textContent = "Remove";
   card.appendChild(removeBtn);
-
+  removeBook(removeBtn);
 }
 
 
@@ -144,14 +146,12 @@ function clearFormFields() {
   readCheckbox.checked = false;
 }
 
-
-const readBtns = document.querySelectorAll(".read");
-readBtns.forEach((readButton) => {
-  readButton.addEventListener("click", () => {
-    readButton.classList.toggle("not-read");
-    setButtonText(readButton);
+function toggleReadStatus(readBtn) {
+  readBtn.addEventListener("click", () => {
+    readBtn.classList.toggle("not-read");
+    setButtonText(readBtn);
   })
-});
+}
 
 function setButtonText(readButton) {
   const btnText = readButton.textContent;
@@ -163,6 +163,12 @@ function setButtonText(readButton) {
     }
 }
 
+function removeBook(removeBtn) {
+  removeBtn.addEventListener("click", () => {
+    deleteBook(removeBtn);
+  });
+}
+
 const removeBtns = document.querySelectorAll(".remove");
 removeBtns.forEach((removeBtn) => {
   removeBtn.addEventListener("click", () => {
@@ -172,7 +178,5 @@ removeBtns.forEach((removeBtn) => {
 
 function deleteBook(removeBtn) {
   const parent = removeBtn.parentNode;
-  const contentContainer = document.querySelector(".content");
-
-  contentContainer.removeChild(parent);
+  content.removeChild(parent);
 }
