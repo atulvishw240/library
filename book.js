@@ -89,6 +89,28 @@ function appendRemoveButton(card, book) {
 
 }
 
+
+const newBookBtn = document.querySelector(".new-book");
+const modal = document.querySelector(".modal");
+const backdrop = document.querySelector(".backdrop");
+
+newBookBtn.addEventListener("click", displayForm);
+backdrop.addEventListener("click", hideForm);
+
+function displayForm() {
+  modal.classList.remove("hidden");
+  backdrop.classList.remove("hidden");  
+}
+
+function hideForm() {
+  modal.classList.add("hidden");
+  backdrop.classList.add("hidden");
+}
+
+
+const submit = document.querySelector(".submit");
+submit.addEventListener("click", submitForm);
+
 function submitForm(event) {
   const titleInput = document.getElementById("title");
   const authorInput = document.getElementById("author");
@@ -96,6 +118,7 @@ function submitForm(event) {
   const readCheckbox = document.getElementById("read-or-not");
 
   addBookToLibrary(titleInput.value, authorInput.value, pagesInput.value, readCheckbox.checked);
+  console.log(library);
 
   titleInput.value = "";
   authorInput.value = "";
@@ -108,7 +131,16 @@ function submitForm(event) {
   event.preventDefault();
 }
 
-function buttonText(readButton) {
+
+const readBtns = document.querySelectorAll('.read');
+readBtns.forEach((readButton) => {
+  readButton.addEventListener("click", () => {
+    readButton.classList.toggle("not-read");
+    setButtonText(readButton);
+  })
+});
+
+function setButtonText(readButton) {
   const btnText = readButton.textContent;
 
     if (btnText === "Read") {
@@ -117,33 +149,3 @@ function buttonText(readButton) {
       readButton.textContent = "Read";
     }
 }
-
-
-// ----------------------Event Listeners----------------------------
-
-const newBookBtn = document.querySelector(".new-book");
-const modal = document.querySelector(".modal");
-const backdrop = document.querySelector(".backdrop");
-
-newBookBtn.addEventListener("click", () => {
-  modal.classList.remove("hidden");
-  backdrop.classList.remove("hidden");
-});
-
-backdrop.addEventListener("click", () => {
-  modal.classList.add("hidden");
-  backdrop.classList.add("hidden");
-});
-
-
-const submit = document.querySelector(".submit");
-submit.addEventListener("click", submitForm);
-
-
-const readBtns = document.querySelectorAll('.read');
-readBtns.forEach((readButton) => {
-  readButton.addEventListener("click", () => {
-    readButton.classList.toggle("not-read");
-    buttonText(readButton);
-  })
-});
