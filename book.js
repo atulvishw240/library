@@ -15,6 +15,10 @@ function Book(id, title, author, noOfPages, isRead) {
   this.isRead = isRead;
 }
 
+Book.prototype.changeReadStatus = function() {
+  this.isRead = !(this.isRead);
+}
+
 function addBookToLibrary(title, author, noOfPages, isRead) {
   id = crypto.randomUUID();
   book = new Book(id, title, author, noOfPages, isRead);
@@ -22,8 +26,8 @@ function addBookToLibrary(title, author, noOfPages, isRead) {
 }
 
 addBookToLibrary("Eloquent Ruby", "Russ Olsen", 338, true);
-addBookToLibrary("Practical OOD in Ruby", "Sandi Metz", 336, true);
-addBookToLibrary("99 Bottles of OOP", "Kathrina Owen", 336, false);
+addBookToLibrary("Practical OOD in Ruby", "Sandi Metz", 336, false);
+addBookToLibrary("99 Bottles of OOP", "Kathrina Owen", 336, true);
 addBookToLibrary("High Performance SQL", "Andrew Atkinson", 454, false);
 
 displayBooks();
@@ -77,6 +81,8 @@ function appendBookPages(card, book) {
 
 function appendReadButton(card, book) {
   const readBtn = document.createElement("button");
+  readBtn.setAttribute("data-id", book.id);
+
   readBtn.classList.add("read");
 
   if (book.isRead) {
@@ -149,8 +155,13 @@ function clearFormFields() {
 
 function toggleReadStatus(readBtn) {
   readBtn.addEventListener("click", () => {
+
     readBtn.classList.toggle("not-read");
     setButtonText(readBtn);
+
+    const bookId = readBtn.dataset.id;
+    const book = getBook(bookId);
+    book.changeReadStatus();
   })
 }
 
